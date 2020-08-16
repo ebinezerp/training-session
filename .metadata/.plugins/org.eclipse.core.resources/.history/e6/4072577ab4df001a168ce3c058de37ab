@@ -1,0 +1,28 @@
+package regandlogin.service;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import regandlogin.util.DBConnection;
+
+public class UserService {
+
+	private Connection con;
+
+	public UserService() throws SQLException {
+		con = new DBConnection().getConnection();
+	}
+
+	public void saveUser(String firstname, String username, String password) {
+		
+	}
+
+	public void login() {
+
+	}
+
+	public void getUser() {
+
+	}
+
+}

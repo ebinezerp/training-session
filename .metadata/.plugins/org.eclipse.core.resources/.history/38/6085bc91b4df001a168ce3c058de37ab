@@ -1,0 +1,45 @@
+package regandlogin.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import regandlogin.dto.User;
+import regandlogin.util.DBConnection;
+
+public class UserService {
+
+	private Connection con;
+
+	public UserService() throws SQLException {
+		con = new DBConnection().getConnection();
+	}
+
+	public void saveUser(User user) {
+
+		PreparedStatement ps = con.prepareStatement("insert into user(firstname,username,password) values(?,?,?)");
+
+		ps.setString(1, name);
+		ps.setString(2, username);
+		ps.setString(3, password);
+
+		int count = ps.executeUpdate();
+
+		if (count > 0) {
+			response.sendRedirect("login.jsp");
+		} else {
+			request.setAttribute("errorMessage", "Some internal error occured. Try again");
+			request.getRequestDispatcher("registration.jsp").forward(request, response);
+		}
+
+	}
+
+	public void login() {
+
+	}
+
+	public void getUser() {
+
+	}
+
+}

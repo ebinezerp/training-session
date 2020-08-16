@@ -1,0 +1,5 @@
+package regandlogin.dto;
+
+public class User {
+
+}
