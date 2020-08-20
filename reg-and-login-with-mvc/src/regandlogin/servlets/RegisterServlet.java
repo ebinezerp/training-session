@@ -35,17 +35,10 @@ public class RegisterServlet extends HttpServlet {
 		user.setUsername(username);
 		user.setPassword(password);
 
-		try {
-
-			UserService userService = new UserService();
-			if (userService.saveUser(user)) {
-				response.sendRedirect("login.jsp");
-			} else {
-				request.setAttribute("errorMessage", "Some internal error occured. Try again");
-				request.getRequestDispatcher("registration.jsp").forward(request, response);
-			}
-
-		} catch (SQLException e) {
+		UserService userService = new UserService();
+		if (userService.saveUser(user)) {
+			response.sendRedirect("login.jsp");
+		} else {
 			request.setAttribute("errorMessage", "Some internal error occured. Try again");
 			request.getRequestDispatcher("registration.jsp").forward(request, response);
 		}

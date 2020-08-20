@@ -26,22 +26,15 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		try {
-			UserService userService = new UserService();
-			User user = userService.login(username, password);
+		UserService userService = new UserService();
+		User user = userService.login(username, password);
 
-			if (user != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-				response.sendRedirect("profile.jsp");
-			} else {
-				request.setAttribute("errorMessage", "Invalid Credentials");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "Database connection error. Try again");
+		if (user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			response.sendRedirect("profile.jsp");
+		} else {
+			request.setAttribute("errorMessage", "Invalid Credentials");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 
