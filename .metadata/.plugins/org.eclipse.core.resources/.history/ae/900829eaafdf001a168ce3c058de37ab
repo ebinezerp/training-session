@@ -1,9 +1,0 @@
-<%
-   String name = request.getParameter("firstname");
-   String username = request.getParameter("username");
-   String password = request.getParameter("password");
-   
-   
-   
-   
-%>
