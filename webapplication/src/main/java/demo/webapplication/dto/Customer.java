@@ -1,12 +1,17 @@
 package demo.webapplication.dto;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+
 
 @Entity
 public class Customer {
@@ -16,7 +21,7 @@ public class Customer {
 	private Integer id;
 
 	@NotEmpty(message = "Enter fullname")
-	@Pattern(regexp = "[a-z]{4,}", message = "only alphabet, min 4 characters")
+	@Pattern(regexp = "[a-z ]{4,}", message = "only alphabet, min 4 characters")
 	private String fullname;
 	@NotEmpty
 	@Email(message = "Enter valid email address")
@@ -27,6 +32,9 @@ public class Customer {
 	@NotEmpty
 	@Pattern(regexp = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})", message = "atleast 1 small alphabet,1 capital alphabet,1 special character. Min 8 character, Max 40 characters")
 	private String password;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Story> stories;
 
 	public Customer() {
 		super();
